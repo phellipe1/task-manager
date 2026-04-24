@@ -1,45 +1,91 @@
-/*
-    coisas pra fazer:
-    *1 - adicionar tarefas a lista -> acho q pode ser colocado em um objeto ou em arquivo json
-    2 - poder editar tarefa -> criar um botão q permita editar a tarefa
-    *3 - poder apagar tarefa
-    4 - colocar como concluir tarefa -> riscar tarefa concluida
-    5 - mostrar quantas tarefas tem
-    6 - não duplicar tarefa
-    */ 
-   // posso criar um objeto q guarda a variável lista, variável item e método adicionar e excluir
-   
+
 const Tasks = {
     list: [],
+    // Render all tasks to the DOM
     render: function () {
         let ul = document.getElementById("list");
         ul.innerHTML = "";
         
         this.list.forEach((task,index)=> {
-            ul.innerHTML += `<li><input type="checkbox" ${task.done ? "checked" : ""} onchange = "Tasks.toggle(${index})"><span class= ${task.done ? "completed" : ""}>${task.text}</span> <button onclick="Tasks.DelfromList(${index})">Excluir</button></li>`
+            ul.innerHTML += `<li>
+                <input type="checkbox" ${task.done ? "checked" : ""} onchange = "Tasks.toggle(${index})">
+            
+            ${
+                task.editing 
+                ? `<input type="text" value="${task.text}" onchange="Tasks.save(${index}, this.value)">`
+                : `<span class= "${task.done ? "completed" : ""}">${task.text}</span>`
+            }
+            
+            <button onclick="Tasks.update(${index})">
+                ${task.editing ? "Save" : "Edit"}
+            </button> 
+            
+            <button onclick="Tasks.delete(${index})">Delete</button></li>`
         });
+        document.getElementById("num-tasks").innerText = this.list.length;
     },
-    AddtoList: function () {
+    // Get user input and add a new task
+    add: function () {
         const input = document.getElementById("inputs");
-        const item = input.value;
-        
+        const item = input.value.trim();
+
+        // to evade duplicates
+        if(this.list.some(task => task.text === item)){return;}
+
         if(item){
             this.list.push({
                 text: item,
-                done: false
+                done: false,
+                editing: false
             });
             this.render();
+            this.saveToStorage();
             input.value = "";
         }
     },
-    DelfromList: function (index) {
+    // Remove a task from the list
+    delete: function (index) {
         this.list.splice(index,1);
         this.render();
+        this.saveToStorage();
     },
+    // Toggle task completion status
     toggle: function (index){
         this.list[index].done = !this.list[index].done;
         this.render();
+        this.saveToStorage();
+    },
+    // Edit tasks
+    update: function(index){
+        this.list[index].editing = !this.list[index].editing;
+        this.render();
+    },
+    // Save Edition
+    save: function(index, newValue){
+        const value = newValue.trim();
+
+        if(!value){ return; }
+        // to evade duplicates
+        if(this.list.some((task,i) => task.text === value && i !== index)){
+            return;
+        }
+        // edit task
+        this.list[index].text = value;
+        this.list[index].editing = false;
+        this.render();
+        this.saveToStorage();
+    },
+    saveToStorage: function(){
+        localStorage.setItem("tasks", JSON.stringify(this.list));
+    },
+    loadFromStorage: function(){
+        const data = localStorage.getItem("tasks");
+        if(data){
+            this.list = JSON.parse(data);
+        }
     }
    }
-document.getElementById("add").addEventListener("click", () => Tasks.AddtoList());
+document.getElementById("add").addEventListener("click", () => Tasks.add());
 
+Tasks.loadFromStorage();
+Tasks.render();
