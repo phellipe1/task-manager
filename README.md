@@ -1,62 +1,75 @@
-# 📝 Task Manager
+# 🧩 Task Manager
 
-A simple and functional task manager built with vanilla JavaScript. It allows users to add, edit, delete, and mark tasks as completed, with data persistence using the browser's local storage.
+A minimal task manager focused on **clean UI, usability, and dark mode experience**.
 
-## 🚀 Features
+---
 
-* ✅ Add new tasks
-* ✏️ Edit existing tasks
-* 🗑️ Delete tasks
-* ✔️ Mark tasks as completed
-* 🔢 Real-time task counter
-* 🚫 Prevent duplicate tasks
-* 💾 Data persistence using `localStorage`
+## ✨ Overview
 
-## 🛠️ Technologies
+This project started as a simple to-do list and evolved into a small UI-focused application where I explored:
 
-* HTML5
-* CSS3
-* JavaScript (Vanilla JS)
+* component organization
+* state handling with localStorage
+* dark mode using CSS variables
+* UI/UX improvements
 
-## 💡 How to Use
+---
 
-1. Type a task in the input field
-2. Click **Add**
-3. Use the buttons to:
+## ⚙️ Features
 
-   * **Edit** a task
-   * **Save** changes
-   * **Delete** a task
-   * Check the box to mark as completed
+* Add, edit, and delete tasks
+* Mark tasks as completed
+* Persistent data with localStorage
+* Dark mode with saved preference
+* Responsive and clean layout
+* Interactive UI (hover, focus, feedback)
 
-Tasks are automatically saved in your browser.
+---
 
-## 📦 Storage
+## 🎨 UI Focus
 
-All tasks are stored locally using the browser's `localStorage`, so your data remains available even after refreshing the page.
+The main goal of this project was improving interface quality:
 
-## 🎯 Project Purpose
+* Consistent color palette
+* Proper visual hierarchy
+* Action alignment (right-side controls)
+* Smooth interactions (hover & focus states)
 
-This project was created to practice:
+---
 
-* DOM manipulation
-* State management
-* Event handling in JavaScript
-* Data persistence in the browser
-* Building applications without frameworks
+## 🧠 What I Practiced
 
-## 🔗 Live Demo
+* DOM manipulation (pure JavaScript)
+* Modular JavaScript (ES Modules)
+* Separation of concerns (theme vs logic)
+* CSS variables for theming
+* UI refinement and iteration
 
-https://task-manager-woad-omega.vercel.app/
+---
 
-## 📁 Getting Started
+## 📂 Structure
+
+```
+index.html
+style.css
+main.js
+theme.js
+```
+
+---
+
+## 🚀 Running Locally
 
 ```bash
-# Clone the repository
-git clone <your-repository>
-
-# Open the project folder
+git clone https://github.com/your-username/task-manager.git
 cd task-manager
-
-# Open index.html in your browser
+npx serve
 ```
+
+---
+
+## 📌 Notes
+
+This project reflects my current focus on **improving both technical skills and UI design**, not just functionality.
+
+
