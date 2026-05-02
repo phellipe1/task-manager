@@ -1,13 +1,16 @@
-
+import { toggleTheme, loadTheme } from "./theme.js";
+loadTheme();
 const Tasks = {
     list: [],
     // Render all tasks to the DOM
     render: function () {
         let ul = document.getElementById("list");
         ul.innerHTML = "";
-        
+        if(!this.list.length){
+            ul.innerHTML = "<p>No task's been defined yet.</p>";
+        }
         this.list.forEach((task,index)=> {
-            ul.innerHTML += `<li>
+            ul.innerHTML += `<li><p>
                 <input type="checkbox" ${task.done ? "checked" : ""} onchange = "Tasks.toggle(${index})">
             
             ${
@@ -15,12 +18,14 @@ const Tasks = {
                 ? `<input type="text" value="${task.text}" onchange="Tasks.save(${index}, this.value)">`
                 : `<span class= "${task.done ? "completed" : ""}">${task.text}</span>`
             }
-            
+            <div class="actions">
             <button onclick="Tasks.update(${index})">
                 ${task.editing ? "Save" : "Edit"}
             </button> 
             
-            <button onclick="Tasks.delete(${index})">Delete</button></li>`
+            <button class="btn-del" onclick="Tasks.delete(${index})"><span class="material-symbols-outlined">
+delete
+</span></button></p></div></li>`
         });
         document.getElementById("num-tasks").innerText = this.list.length;
     },
@@ -89,3 +94,8 @@ document.getElementById("add").addEventListener("click", () => Tasks.add());
 
 Tasks.loadFromStorage();
 Tasks.render();
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", toggleTheme);}
+);
+window.Tasks = Tasks;
