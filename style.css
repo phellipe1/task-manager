@@ -140,7 +140,35 @@ li span {
     text-decoration: line-through;
     opacity: 0.4;
 }
+.badge{
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: .8rem;
+}
 
+/* Calendar grid */
+.weekdays, #calendar-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+.calendar-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+.weekdays div{
+    text-align: center;
+    font-weight: bold;
+}
+.day{
+    min-height: 100px;
+    background: var(--bg-light);
+    border-radius: var(--radius);
+    padding: 10px;
+}
 /*dark theme button*/
 #theme-toggle{
     height: 50px;
