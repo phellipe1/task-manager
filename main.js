@@ -1,7 +1,7 @@
 import { toggleTheme, loadTheme } from "./theme.js";
 import { currentStatus, realDate } from "./states.js";
+import { renderCalendar, prevMonth, nextMonth } from "./calendar.js";
 loadTheme();
-let currentDate = new Date();
 const Tasks = {
     list: [],
     // Render all tasks to the DOM
@@ -30,39 +30,6 @@ delete
 </span></button></div></p></li>`
         });
         document.getElementById("num-tasks").innerText = this.list.length;
-    },
-    renderCalendar: function (){
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth();
-        const firstDay = new Date(year, month, 1);
-        const startday = firstDay.getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        const grid = document.getElementById("calendar-grid");
-        grid.innerHTML = "";
-
-        for(let i = 0; i < startday; i++){
-            const empty = document.createElement("div");
-            grid.appendChild(empty);
-        }
-        for(let day = 1; day <= daysInMonth; day++){
-            const dayElement = document.createElement("div");
-            dayElement.classList.add("day");
-
-            dayElement.innerHTML = `
-                <strong>${day}</strong>
-            `;
-            grid.appendChild(dayElement);
-        }
-        document.getElementById("month-year").innerText = `${month + 1}/${year}`;
-
-    },
-    prevMonth: function(){
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        this.renderCalendar();
-    },
-    nextMonth: function(){
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        this.renderCalendar();
     },
     // Get user input and add a new task
     add: function () {
@@ -133,6 +100,30 @@ delete
         }
     }
    }
+
+const OpenCalendar = document.getElementById("btn-calendar");
+const overlay = document.getElementById("overlay");
+let calendar = null;
+OpenCalendar.addEventListener("click", () =>{
+    calendar = document.getElementById("calendar");
+    openCalendar()
+});
+overlay.addEventListener("click", () =>{
+        closeCalendar();
+    });
+function openCalendar(){
+    if(!calendar) return;
+    calendar.classList.add("active");
+    overlay.classList.add("active");
+}
+function closeCalendar(){
+    if(!calendar) return;
+    calendar.classList.remove("active");
+    overlay.classList.remove("active");
+}
+
+
+
 document.getElementById("add").addEventListener("click", () => Tasks.add());
 
 Tasks.loadFromStorage();
@@ -141,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.getElementById("theme-toggle");
     toggle.addEventListener("click", toggleTheme);}
 );
-document.getElementById("btn-calendar").addEventListener("click", () => {Tasks.renderCalendar()});
-document.getElementById("prev-month").addEventListener("click", () => {Tasks.prevMonth()});
-document.getElementById("next-month").addEventListener("click", () => {Tasks.nextMonth()});
+document.getElementById("btn-calendar").addEventListener("click", () => {renderCalendar()});
+document.getElementById("prev-month").addEventListener("click", () => {prevMonth()});
+document.getElementById("next-month").addEventListener("click", () => {nextMonth()});
 window.Tasks = Tasks;

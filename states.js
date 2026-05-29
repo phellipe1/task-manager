@@ -1,3 +1,4 @@
+// convert string date to date obejct
 export function realDate(dataString){
     const parts = dataString.split("/");
 
@@ -6,6 +7,7 @@ export function realDate(dataString){
     const year = parseInt(parts[2]);
     return new Date(year, month, day);
 }
+// return current status of the task
 export function currentStatus(item){
     if(!item) return "";
 
