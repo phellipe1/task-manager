@@ -39,7 +39,10 @@ export function renderCalendar(){
         }
 
         grid.appendChild(dayElement);
-
+        dayElement.addEventListener("click", () => {
+            openDayPanel(currentDayDate);
+            
+        })
     }
     document.getElementById("month-year").innerText = `${month + 1}/${year}`;
 
@@ -52,3 +55,33 @@ export function nextMonth(){
         currentDate.setMonth(currentDate.getMonth() + 1);
         renderCalendar();
     }
+export function openCalendar(){
+    if(!calendar) return;
+    calendar.classList.add("active");
+    overlay.classList.add("active");
+}
+export function closeCalendar(){
+    if(!calendar) return;
+    calendar.classList.remove("active");
+    overlay.classList.remove("active");
+}
+function openDayPanel(date){
+    console.log(date);
+    console.log(document.getElementById("day-panel"));
+    document.getElementById("day-panel").classList.add("active");
+    document.getElementById("panel-date").textContent = date;
+    const tasksOfDay = window.Tasks.list.filter(task => task.dueDate === date);
+    const panelTasks = document.getElementById("panel-tasks");
+    panelTasks.innerHTML = "";
+    tasksOfDay.forEach(task => {
+        const p = document.createElement("p");
+        p.textContent = task.text;
+        panelTasks.appendChild(p);
+    });
+    console.log(tasksOfDay);
+}
+export function closeDayPanel(){
+    document
+        .getElementById("day-panel")
+        .classList.remove("active");
+}

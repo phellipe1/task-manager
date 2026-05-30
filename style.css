@@ -147,6 +147,11 @@ li span {
 }
 
 /* Calendar grid */
+.calendar-container{
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
 #calendar{
     background: var(--bg);
     position: fixed;
@@ -165,6 +170,9 @@ li span {
 #calendar.active{
     transform: translate(-50%, -50%) scale(1);
     display: block;
+}
+#close-panel{
+    cursor: pointer;
 }
 .calendar-task{
     font-size: .8rem;
@@ -198,6 +206,22 @@ li span {
     padding: 10px;
     overflow: hidden;
     min-width: 0;
+}
+#day-panel{
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    width: 350px;
+    height: 100vh;
+
+    background: red;
+    display: none;
+    z-index: 20;
+}
+#day-panel.active{
+    right: 0;
+    display: block;
 }
 #overlay{
     position: fixed;

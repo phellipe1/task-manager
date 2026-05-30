@@ -1,6 +1,6 @@
 import { toggleTheme, loadTheme } from "./theme.js";
 import { currentStatus, realDate } from "./states.js";
-import { renderCalendar, prevMonth, nextMonth } from "./calendar.js";
+import { renderCalendar, prevMonth, nextMonth, openCalendar, closeCalendar, closeDayPanel } from "./calendar.js";
 loadTheme();
 const Tasks = {
     list: [],
@@ -110,17 +110,8 @@ OpenCalendar.addEventListener("click", () =>{
 });
 overlay.addEventListener("click", () =>{
         closeCalendar();
+        closeDayPanel();
     });
-function openCalendar(){
-    if(!calendar) return;
-    calendar.classList.add("active");
-    overlay.classList.add("active");
-}
-function closeCalendar(){
-    if(!calendar) return;
-    calendar.classList.remove("active");
-    overlay.classList.remove("active");
-}
 
 
 
@@ -135,4 +126,5 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("btn-calendar").addEventListener("click", () => {renderCalendar()});
 document.getElementById("prev-month").addEventListener("click", () => {prevMonth()});
 document.getElementById("next-month").addEventListener("click", () => {nextMonth()});
+document.getElementById("close-panel").addEventListener("click", closeDayPanel);
 window.Tasks = Tasks;
