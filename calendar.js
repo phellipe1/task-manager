@@ -57,13 +57,15 @@ export function nextMonth(){
     }
 export function openCalendar(){
     if(!calendar) return;
-    calendar.classList.add("active");
-    overlay.classList.add("active");
+    document.querySelector("div#calendar").classList.add("active");
+    document.querySelector("div#overlay").classList.add("active");
+    document.querySelector("div.calendar-container").classList.add("active");
 }
 export function closeCalendar(){
     if(!calendar) return;
-    calendar.classList.remove("active");
-    overlay.classList.remove("active");
+    document.querySelector("div#calendar").classList.remove("active");
+    document.querySelector("div#overlay").classList.remove("active");
+    document.querySelector("div.calendar-container").classList.remove("active");
 }
 function openDayPanel(date){
     console.log(date);

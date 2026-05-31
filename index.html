@@ -24,28 +24,30 @@
         </ul>
 
         <!--Calendar grid-->
-    <div id="calendar">
-        <div class="calendar-header">
-            <button id="prev-month"><</button>
-            <h2 id="month-year"></h2>
-            <button id="next-month">></button>
+    <div class="calendar-container">
+        <div id="calendar">
+            <div class="calendar-header">
+                <button id="prev-month"><</button>
+                <h2 id="month-year"></h2>
+                <button id="next-month">></button>
+            </div>
+            <div class="weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+            </div>
+            <div id="calendar-grid"></div>
         </div>
-        <div class="weekdays">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
+        <div id="day-panel">
+            <h2 id="close-panel">&times;</h2>
+            <h1 id="panel-date"></h1>
+            <div id="panel-tasks"></div>
         </div>
-        <div id="calendar-grid"></div>
-    </div>
-    <div id="day-panel">
-        <h2 id="close-panel">&times;</h2>
-        <h1 id="panel-date"></h1>
-        <div id="panel-tasks"></div>
-    </div>
+        </div>
     </div>
     <div   id="overlay"></div>
     <script type="module" src="main.js"></script>

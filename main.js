@@ -102,10 +102,7 @@ delete
    }
 
 const OpenCalendar = document.getElementById("btn-calendar");
-const overlay = document.getElementById("overlay");
-let calendar = null;
 OpenCalendar.addEventListener("click", () =>{
-    calendar = document.getElementById("calendar");
     openCalendar()
 });
 overlay.addEventListener("click", () =>{
