@@ -1,75 +1,69 @@
-# 🧩 Task Manager
+# Task Manager
 
-A minimal task manager focused on **clean UI, usability, and dark mode experience**.
+A simple task management web application built with JavaScript, HTML, and CSS.
 
----
+## Features
 
-## ✨ Overview
-
-This project started as a simple to-do list and evolved into a small UI-focused application where I explored:
-
-* component organization
-* state handling with localStorage
-* dark mode using CSS variables
-* UI/UX improvements
-
----
-
-## ⚙️ Features
-
-* Add, edit, and delete tasks
+* Create tasks
+* Edit tasks
+* Delete tasks
 * Mark tasks as completed
-* Persistent data with localStorage
-* Dark mode with saved preference
-* Responsive and clean layout
-* Interactive UI (hover, focus, feedback)
+* Automatic task sorting by due date
+* Data persistence using LocalStorage
+* Light/Dark theme toggle
+* Monthly calendar view
+* Daily task panel
+* Month navigation
 
----
+## Calendar Integration
 
-## 🎨 UI Focus
+The application includes an interactive calendar that allows users to:
 
-The main goal of this project was improving interface quality:
+* View tasks associated with specific dates
+* Navigate between months
+* Preview tasks directly inside calendar cells
+* Open a side panel to view all tasks for a selected day
 
-* Consistent color palette
-* Proper visual hierarchy
-* Action alignment (right-side controls)
-* Smooth interactions (hover & focus states)
+## Technologies
 
----
+* HTML5
+* CSS3
+* JavaScript (ES6 Modules)
+* LocalStorage
 
-## 🧠 What I Practiced
+## Getting Started
 
-* DOM manipulation (pure JavaScript)
-* Modular JavaScript (ES Modules)
-* Separation of concerns (theme vs logic)
-* CSS variables for theming
-* UI refinement and iteration
-
----
-
-## 📂 Structure
-
-```
-index.html
-style.css
-main.js
-theme.js
-```
-
----
-
-## 🚀 Running Locally
+1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/task-manager.git
-cd task-manager
-npx serve
+git clone <repository-url>
 ```
 
----
+2. Open the project using a local development server.
 
-## 📌 Notes
+3. Open your browser and access the application.
 
-This project reflects my current focus on **improving both technical skills and UI design**, not just functionality.
+## Project Structure
 
+```text
+├── index.html
+├── css/
+├── js/
+│   ├── calendar.js
+│   ├── theme.js
+│   ├── states.js
+│   └── main.js
+└── README.md
+```
 
+## Learning Outcomes
+
+This project was developed to practice:
+
+* DOM manipulation
+* Event handling
+* Date management in JavaScript
+* Modular application architecture
+* State management
+* Responsive UI design
+* LocalStorage persistence
